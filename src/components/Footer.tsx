@@ -1,11 +1,11 @@
 import { useLanguage } from '@/i18n/LanguageContext';
 import type { Lang } from '@/i18n/translations';
 
-const langs: { code: Lang; label: string; flag: string }[] = [
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'ru', label: 'RU', flag: '🇷🇺' },
-  { code: 'cn', label: 'CN', flag: '🇨🇳' },
-  { code: 'es', label: 'ES', flag: '🇪🇸' },
+const langs: { code: Lang; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'ru', label: 'RU' },
+  { code: 'cn', label: 'CN' },
+  { code: 'es', label: 'ES' },
 ];
 
 const Footer = () => {
@@ -20,7 +20,7 @@ const Footer = () => {
 
         <div className="grid md:grid-cols-3 gap-8 items-center">
           <div className="text-center md:text-left">
-            <h2 className="text-lg font-bold text-foreground font-serif mb-2">Ivan | РКИ</h2>
+            <h2 className="text-lg font-bold text-foreground font-serif mb-2">Ivan - your Russian tutor</h2>
             <p className="text-sm text-muted-foreground">Russian as a Foreign Language</p>
           </div>
 
@@ -35,7 +35,7 @@ const Footer = () => {
 
           <div className="text-center md:text-right">
             <div className="inline-flex items-center border border-border rounded-md overflow-hidden mb-3">
-              {langs.map(({ code, label, flag }) => (
+              {langs.map(({ code, label }) => (
                 <button
                   key={code}
                   onClick={() => setLang(code)}
@@ -45,7 +45,7 @@ const Footer = () => {
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  {flag} {label}
+                  {label}
                 </button>
               ))}
             </div>

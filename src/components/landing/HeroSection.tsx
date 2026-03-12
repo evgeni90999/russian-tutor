@@ -33,13 +33,12 @@ const HeroSection = () => {
           </Button>
         </div>
         <div className="relative">
-          <div className="aspect-[4/5] bg-muted rounded-lg border border-border flex items-center justify-center">
-            <div className="text-center text-muted-foreground space-y-2">
-              <div className="w-20 h-20 mx-auto bg-accent rounded-full flex items-center justify-center">
-                <span className="text-3xl">📸</span>
-              </div>
-              <p className="text-sm">Photo placeholder</p>
-            </div>
+          <div className="aspect-square max-h-[min(72vh,28rem)] w-full bg-muted rounded-lg border border-border overflow-hidden">
+            <img
+              src="/tutor.png"
+              alt="Ivan - your Russian tutor"
+              className="w-full h-full object-cover object-top"
+            />
           </div>
         </div>
       </div>

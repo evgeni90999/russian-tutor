@@ -13,7 +13,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.title': 'Master Russian for Life, Work, and Connection.',
     'hero.subtitle': 'Your journey starts here.',
     'hero.description': '1-on-1 personalized lessons. Break through the language barrier with a native speaker who understands exactly how you learn.',
-    'hero.cta': 'Claim Your Free 60-min Trial Lesson',
+    'hero.cta': 'Claim Your Free 30-min Trial Lesson',
 
     // For Whom
     'forwhom.title': 'From Beijing to New York — I Speak Your Language.',
@@ -120,7 +120,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.title': 'Освойте русский для жизни, работы и общения.',
     'hero.subtitle': 'Ваше путешествие начинается здесь.',
     'hero.description': 'Индивидуальные занятия 1-на-1. Преодолейте языковой барьер с носителем языка, который точно понимает, как вы учитесь.',
-    'hero.cta': 'Записаться на бесплатный пробный урок (60 мин)',
+    'hero.cta': 'Записаться на бесплатный пробный урок (30 мин)',
 
     'forwhom.title': 'От Пекина до Нью-Йорка — Я говорю на вашем языке.',
     'forwhom.description': 'Я знаю, почему полякам трудно даются русские падежи, и почему англоговорящим нужен особый подход к кириллице. Я не просто учу русскому — я создаю мост между вашим родным языком и русским.',
@@ -219,7 +219,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.title': '掌握俄语，用于生活、工作和交流。',
     'hero.subtitle': '您的旅程从这里开始。',
     'hero.description': '一对一个性化课程。与理解您学习方式的母语者一起突破语言障碍。',
-    'hero.cta': '预约免费60分钟试听课',
+    'hero.cta': '预约免费30分钟试听课',
 
     'forwhom.title': '从北京到纽约 — 我会说您的语言。',
     'forwhom.description': '我了解中文母语者学习俄语的困难所在。我不仅教俄语，还在您的母语和目标语言之间架起桥梁。',
@@ -318,7 +318,7 @@ export const translations: Record<Lang, Record<string, string>> = {
     'hero.title': 'Domina el ruso para la vida, el trabajo y la conexión.',
     'hero.subtitle': 'Tu viaje comienza aquí.',
     'hero.description': 'Clases personalizadas 1 a 1. Rompe la barrera del idioma con un hablante nativo que entiende exactamente cómo aprendes.',
-    'hero.cta': 'Reserva tu clase de prueba gratuita (60 min)',
+    'hero.cta': 'Reserva tu clase de prueba gratuita (30 min)',
 
     'forwhom.title': 'De Pekín a Nueva York — Hablo tu idioma.',
     'forwhom.description': 'Sé por qué un hispanohablante tiene dificultades con los casos rusos. No solo enseño ruso; construyo un puente entre tu lengua materna y tu lengua meta.',

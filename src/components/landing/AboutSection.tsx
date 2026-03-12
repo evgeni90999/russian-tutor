@@ -17,14 +17,17 @@ const AboutSection = () => {
           {t('about.title')}
         </h2>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Video placeholder */}
-          <div className="aspect-video bg-muted rounded-lg border border-border flex items-center justify-center">
-            <div className="text-center text-muted-foreground space-y-2">
-              <div className="w-16 h-16 mx-auto bg-accent rounded-full flex items-center justify-center">
-                <span className="text-2xl">▶️</span>
-              </div>
-              <p className="text-sm">{t('about.video_placeholder')}</p>
-            </div>
+          <div className="relative aspect-video w-full rounded-lg border border-border overflow-hidden bg-muted">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/6aK6v_Qnb-c?si=q7c9kGHk3NGM1FKn"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
           </div>
 
           {/* Text */}

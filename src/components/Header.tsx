@@ -3,13 +3,12 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/i18n/LanguageContext';
 import type { Lang } from '@/i18n/translations';
-import ThemeToggle from './ThemeToggle';
 
-const langs: { code: Lang; label: string; flag: string }[] = [
-  { code: 'en', label: 'EN', flag: '🇬🇧' },
-  { code: 'ru', label: 'RU', flag: '🇷🇺' },
-  { code: 'cn', label: 'CN', flag: '🇨🇳' },
-  { code: 'es', label: 'ES', flag: '🇪🇸' },
+const langs: { code: Lang; label: string }[] = [
+  { code: 'en', label: 'EN' },
+  { code: 'ru', label: 'RU' },
+  { code: 'cn', label: 'CN' },
+  { code: 'es', label: 'ES' },
 ];
 
 const navAnchors = [
@@ -34,7 +33,7 @@ const Header = () => {
       <div className="container-blog">
         <div className="flex items-center justify-between h-16">
           <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-xl font-bold text-foreground font-serif">
-            Ivan | РКИ
+            Ivan - your Russian tutor
           </a>
 
           {/* Desktop nav */}
@@ -53,7 +52,7 @@ const Header = () => {
           <div className="hidden lg:flex items-center space-x-2">
             {/* Language switcher */}
             <div className="flex items-center border border-border rounded-md overflow-hidden">
-              {langs.map(({ code, label, flag }) => (
+              {langs.map(({ code, label }) => (
                 <button
                   key={code}
                   onClick={() => setLang(code)}
@@ -64,11 +63,10 @@ const Header = () => {
                   }`}
                   aria-label={`Switch to ${label}`}
                 >
-                  {flag} {label}
+                  {label}
                 </button>
               ))}
             </div>
-            <ThemeToggle />
           </div>
 
           {/* Mobile menu */}
@@ -96,7 +94,7 @@ const Header = () => {
               ))}
             </nav>
             <div className="flex items-center gap-2 pt-2">
-              {langs.map(({ code, label, flag }) => (
+              {langs.map(({ code, label }) => (
                 <button
                   key={code}
                   onClick={() => { setLang(code); setIsMenuOpen(false); }}
@@ -106,10 +104,9 @@ const Header = () => {
                       : 'text-muted-foreground hover:text-foreground border border-border'
                   }`}
                 >
-                  {flag} {label}
+                  {label}
                 </button>
               ))}
-              <ThemeToggle />
             </div>
           </div>
         )}
