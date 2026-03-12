@@ -1,72 +1,77 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Search, Facebook, Twitter, Instagram, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/i18n/LanguageContext';
+import type { Lang } from '@/i18n/translations';
 import ThemeToggle from './ThemeToggle';
+
+const langs: { code: Lang; label: string; flag: string }[] = [
+  { code: 'en', label: 'EN', flag: '🇬🇧' },
+  { code: 'ru', label: 'RU', flag: '🇷🇺' },
+  { code: 'cn', label: 'CN', flag: '🇨🇳' },
+  { code: 'es', label: 'ES', flag: '🇪🇸' },
+];
+
+const navAnchors = [
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.pricing', href: '#pricing' },
+  { key: 'nav.faq', href: '#faq' },
+  { key: 'nav.contact', href: '#contact' },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const { lang, setLang, t } = useLanguage();
 
-  const navItems = [
-    { name: 'ALL POST', href: '/posts' },
-    { name: 'BUSINESS', href: '/business' },
-    { name: 'TECHNOLOGY', href: '/technology' },
-    { name: 'PODCAST', href: '/podcast' },
-  ];
-
-  const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },  
-    { icon: Instagram, href: '#', label: 'Instagram' },
-  ];
+  const scrollTo = (href: string) => {
+    setIsMenuOpen(false);
+    const el = document.querySelector(href);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50">
+    <header className="bg-background/95 backdrop-blur border-b border-border sticky top-0 z-50">
       <div className="container-blog">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link to="/" className="block">
-              <h1 className="text-2xl font-bold text-foreground">nexus</h1>
-            </Link>
-          </div>
+        <div className="flex items-center justify-between h-16">
+          <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-xl font-bold text-foreground font-serif">
+            Ivan | РКИ
+          </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center space-x-6">
+            {navAnchors.map(({ key, href }) => (
+              <button
+                key={key}
+                onClick={() => scrollTo(href)}
                 className="nav-link"
               >
-                {item.name}
-              </Link>
+                {t(key)}
+              </button>
             ))}
           </nav>
 
-          {/* Social Links & Search */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <Button key={label} variant="outline" size="sm" asChild>
-                <a href={href} aria-label={label}>
-                  <Icon className="h-4 w-4" />
-                </a>
-              </Button>
-            ))}
-            
-            <Button 
-              variant="outline" 
-              size="sm" 
-              aria-label="Search articles"
-              onClick={() => navigate('/search')}
-            >
-              <Search className="h-4 w-4" />
-            </Button>
+          <div className="hidden lg:flex items-center space-x-2">
+            {/* Language switcher */}
+            <div className="flex items-center border border-border rounded-md overflow-hidden">
+              {langs.map(({ code, label, flag }) => (
+                <button
+                  key={code}
+                  onClick={() => setLang(code)}
+                  className={`px-2 py-1 text-xs font-medium transition-colors ${
+                    lang === code
+                      ? 'bg-foreground text-background'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                  aria-label={`Switch to ${label}`}
+                >
+                  {flag} {label}
+                </button>
+              ))}
+            </div>
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile menu */}
           <Button
             variant="ghost"
             size="sm"
@@ -77,43 +82,34 @@ const Header = () => {
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-border py-4">
-            <nav className="flex flex-col space-y-4" role="navigation" aria-label="Mobile navigation">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="nav-link"
-                  onClick={() => setIsMenuOpen(false)}
+          <div className="lg:hidden border-t border-border py-4 space-y-4">
+            <nav className="flex flex-col space-y-3">
+              {navAnchors.map(({ key, href }) => (
+                <button
+                  key={key}
+                  onClick={() => scrollTo(href)}
+                  className="nav-link text-left"
                 >
-                  {item.name}
-                </Link>
+                  {t(key)}
+                </button>
               ))}
             </nav>
-            
-            <div className="mt-6 space-y-4">
-              <div className="flex space-x-2 items-center">
-                {socialLinks.map(({ icon: Icon, href, label }) => (
-                  <Button key={label} variant="outline" size="sm" asChild>
-                    <a href={href} aria-label={label}>
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </Button>
-                ))}
-                
-                <ThemeToggle />
-              </div>
-              
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  aria-label="Search articles"
-                  onClick={() => navigate('/search')}
+            <div className="flex items-center gap-2 pt-2">
+              {langs.map(({ code, label, flag }) => (
+                <button
+                  key={code}
+                  onClick={() => { setLang(code); setIsMenuOpen(false); }}
+                  className={`px-2 py-1 text-xs font-medium rounded transition-colors ${
+                    lang === code
+                      ? 'bg-foreground text-background'
+                      : 'text-muted-foreground hover:text-foreground border border-border'
+                  }`}
                 >
-                  <Search className="h-4 w-4" />
-                </Button>
+                  {flag} {label}
+                </button>
+              ))}
+              <ThemeToggle />
             </div>
           </div>
         )}
